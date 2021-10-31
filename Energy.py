@@ -16,5 +16,5 @@ def dropWeight():
 def liftWeight():
     global energyHave, energyNeed
     lift(energyHave - energyNeed) #sends a signal to lift the weights to store excess energy
-    return energyHave - energyNeeds #returns the value to update energyHave
+    return energyHave - energyNeed #returns the value to update energyHave
     
