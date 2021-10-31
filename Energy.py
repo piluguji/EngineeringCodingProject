@@ -4,10 +4,6 @@ energyNeed = getEnergyNeed() #Pre-determined number from the user
 def blockHeight():
     global energyHave, energyNeed
     if energyNeed > energyHave:
-        return 1 #drop weights
+        energyHave += dropWeight()
     else:
-        energyHave += liftWeight() #lift weights
-        blockHeight() #recursion until drop weights
-
-
-blockHeight()
+        energyHave -= liftWeight()
