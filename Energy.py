@@ -10,7 +10,7 @@ def blockHeight():
 
 def dropWeight():
     global energyHave, energyNeed
-    drop(energyNeed-energyHave #sends a signal to drop the weights to get needed energy
+    drop(energyNeed-energyHave) #sends a signal to drop the weights to get needed energy
     return energyNeed - energyHave #returns the value to update energyHave 
     
 def liftWeight():
