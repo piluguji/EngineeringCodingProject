@@ -9,6 +9,7 @@ import wiringpi
 import RPi.GPIO as GPIO  #library to control relays
 # https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/software help with servo
 
+# testing to see if I can push
 
 #Setting mode of GPIO pins
 GPIO.setmode(GPIO.BOARD)
