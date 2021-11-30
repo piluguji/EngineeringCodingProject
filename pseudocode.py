@@ -6,7 +6,21 @@ import board
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import wiringpi
+import RPi.GPIO as GPIO  #library to control relays
 # https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/software help with servo
+
+
+#Setting mode of GPIO pins
+GPIO.setmode(GPIO.BOARD)
+
+#Set up and identifying which pins connect to where on raspberry pi
+in1 = 1, in2 = 2, in3 = 3, in4 = 4, in5 = 5
+
+GPIO.setup(in1, GPIO.OUT)
+GPIO.setup(in2, GPIO.OUT)
+GPIO.setup(in3, GPIO.OUT)
+GPIO.setup(in4, GPIO.OUT)
+GPIO.setup(in5, GPIO.OUT)
 
 # create the spi bus
 spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI)
@@ -37,6 +51,7 @@ def main():
   if chan0.voltage < 4 or chan0.voltage > 6:
     # if height at max, wait for some time and then do recursion with main()
     # else liftweight() and then do main()
+    pass
   else:
     dropweight()
     main()
@@ -44,8 +59,25 @@ def main():
 
 def liftweight():
   #lift the weight, release servo and then lift weight
+
+  #Relay configuration to charge battery and send power to load
+  GPIO.output(in1, GPIO.HIGH)
+  GPIO.output(in2, GPIO.HIGH)
+  GPIO.output(in3, GPIO.HIGH)
+
+  GPIO.output(in4, GPIO.LOW)
+  GPIO.output(in5, GPIO.LOW)
+
   
 def dropweight():
   #drop weight, release servo
   # I believe we are dropping to the ground each time so we don't need to do recursion here, someone correct me if I'm wrong
+  
+  #Relay configuration to send power only from the gravity battery
+  GPIO.output(in1, GPIO.LOW)
+  GPIO.output(in2, GPIO.LOW)
+  GPIO.output(in3, GPIO.LOW)
+
+  GPIO.output(in4, GPIO.HIGH)
+  GPIO.output(in5, GPIO.HIGH)
   
