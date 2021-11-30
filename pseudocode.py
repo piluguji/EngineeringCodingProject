@@ -8,6 +8,7 @@ from adafruit_mcp3xxx.analog_in import AnalogIn
 import wiringpi
 import RPi.GPIO as GPIO  #library to control relays
 # https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/software help with servo
+# MOSFET PWM: https://forums.raspberrypi.com/viewtopic.php?t=122390
 
 # testing to see if I can push
 
