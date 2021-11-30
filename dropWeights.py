@@ -1,5 +1,7 @@
 # Get energy values
 
+# we need a function to get volts from volt meter???
+
 # These are sample values
 energyHave = 1500
 energyNeeded = 2000
