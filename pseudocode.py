@@ -7,10 +7,9 @@ import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
 import wiringpi
 import RPi.GPIO as GPIO  #library to control relays
+import keyboard
 # https://learn.adafruit.com/adafruits-raspberry-pi-lesson-8-using-a-servo-motor/software help with servo
 # MOSFET PWM: https://forums.raspberrypi.com/viewtopic.php?t=122390
-
-# testing to see if I can push
 
 #Setting mode of GPIO pins
 GPIO.setmode(GPIO.BOARD)
@@ -48,17 +47,6 @@ wiringpi.pinMode(18, wiringpi.GPIO.PWM_OUTPUT)
 # set the PWM mode to milliseconds stype
 wiringpi.pwmSetMode(wiringpi.GPIO.PWM_MODE_MS)
 
-
-def main():
-  if chan0.voltage < 4 or chan0.voltage > 6:
-    # if height at max, wait for some time and then do recursion with main()
-    # else liftweight() and then do main()
-    pass
-  else:
-    dropweight()
-    main()
-
-
 def liftweight():
   #lift the weight, release servo and then lift weight
 
@@ -83,3 +71,9 @@ def dropweight():
   GPIO.output(in4, GPIO.HIGH)
   GPIO.output(in5, GPIO.HIGH)
   
+def main():
+  while not keyboard.is_pressed():
+    if chan0.voltage == 0:
+      dropweight()
+    else:
+      liftweight()
