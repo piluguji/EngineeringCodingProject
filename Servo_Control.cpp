@@ -3,7 +3,7 @@
 #define trigPin 3 //attach pin D3 Arduino to pin Trig of HC-SR04
 
 // defines variables
-long duration; // variable for the duration of sound wave travel
+double duration; // variable for the duration of sound wave travel
 double distance; // variable for the distance measurement
 int servoPin = 5;
 Servo Servo1;
