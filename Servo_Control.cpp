@@ -6,6 +6,8 @@
 double duration; // variable for the duration of sound wave travel
 double distance; // variable for the distance measurement
 int servoPin = 5;
+int sensorValue;
+float voltage;
 Servo Servo1;
 
 void setup() {
@@ -29,17 +31,21 @@ void loop() {
   // Calculating the distance
   distance = duration * 0.00034 / 2; // Speed of sound wave divided by 2 (go and back)
   // Displays the distance on the Serial Monitor
+  sensorValue = analogRead(A0);
+  voltage = sensorValue * 5.0/1023.0;
   Serial.print("Distance: ");
   Serial.print(distance);
   Serial.println(" m");
+  Serial.print(voltage);
+  Serial.println(" V");
   if(distance < 0.5){
     Servo1.write(0);
-    delay(1000)
+    delay(1000);
   } else if(distance >= 0.5 && distance <= 1) {
-    Servo1.write(90)
-    delay(1000)
+    Servo1.write(90);
+    delay(1000);
   } else {
-    Servo1.write(180)
-    delay(1000)
+    Servo1.write(180);
+    delay(1000);
   }
 }
