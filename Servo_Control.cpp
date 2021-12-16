@@ -33,13 +33,22 @@ void loop() {
   // Displays the distance on the Serial Monitor
   sensorValue = analogRead(A0);
   voltage = sensorValue * 5.0/1023.0;
-  if(distance < 0.1){
-    Servo1.write(0);
-    delay(1000);
-    RPi.GPIO.PWM(PWM_Pin, 0));
-  else {
-    RPi.GPIO.PWM(PWM_Pin, STANDARD_FREQUENCY));
+  if(voltage < MIN_VOLTAGE){
+    //We are dropping the battery since voltage is cut
     Servo1.write(180);
     delay(1000);
+    analogWrite(PWM_Pin, 0);
+  }else{
+    //We have voltage so we are raising the battery
+    if(distance < 0.1){
+      Servo1.write(0);
+      delay(1000);
+      analogWrite(PWM_Pin, 0);
+    }else{
+      analogWrite(PWM_Pin, STANDARD_FREQUENCY);
+      Servo1.write(180);
+      delay(1000);
+    }
   }
 }
+  
