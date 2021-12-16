@@ -33,11 +33,6 @@ void loop() {
   // Displays the distance on the Serial Monitor
   sensorValue = analogRead(A0);
   voltage = sensorValue * 5.0/1023.0;
-  Serial.print("Distance: ");
-  Serial.print(distance);
-  Serial.println(" m");
-  Serial.print(voltage);
-  Serial.println(" V");
   if(distance < 0.5){
     Servo1.write(0);
     delay(1000);
